@@ -20,7 +20,6 @@ COPY . .
 RUN mkdir -p /app/static
 
 RUN rm -rf MUSEUM_BOT/_pycache_
-RUN mv MUSEUM_BOT/* .
 
 RUN python manage.py migrate --noinput || true
 
@@ -28,4 +27,4 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
-CMD  ["gunicorn","MUSEUM_BOT.asgi:application", "-k", "uvicorn.workers.UvicornWorker",  "--bind", "0.0.0.0:8000"]
+CMD  ["gunicorn","MUSEUM_BOT.wsgi:application", "-k", "uvicorn.workers.UvicornWorker",  "--bind", "0.0.0.0:8000"]
