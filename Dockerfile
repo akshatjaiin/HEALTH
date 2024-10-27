@@ -22,6 +22,7 @@ RUN mkdir -p /app/static
 RUN rm -rf MUSEUM_BOT/_pycache_
 
 RUN python manage.py migrate --noinput || true
+RUN python manage.py collectstatic 
 
 EXPOSE 8000
 
