@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Install pip and dependencies
 RUN pip install --upgrade pip
-RUN pip install gunicorn uvicorn 
+RUN pip install gunicorn
 
 # Copy the requirements file into the container
 COPY requirements.txt .
@@ -25,4 +25,4 @@ RUN python manage.py migrate --noinput || true
 
 EXPOSE 8000
 
-CMD  ["gunicorn","MUSEUM_BOT.wsgi:application", "-k", "uvicorn.workers.UvicornWorker",  "--bind", "0.0.0.0:8000"]
+CMD  ["gunicorn","MUSEUM_BOT.wsgi:application",  "--bind", "0.0.0.0:8000"]
